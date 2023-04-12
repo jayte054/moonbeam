@@ -9,6 +9,7 @@ import {
 from "../../utils/firebase/firebase.utils"
 import { SignUpForm } from "../../component/signUpForm/signUp-Form.component"
 import { SignInForm } from "../../component/signIn-Form/signIn-Form.component"
+import "./authentication.route.styles.scss"
 
 export const Authentication = () => {
     // useEffect(() => {
@@ -30,12 +31,11 @@ export const Authentication = () => {
     //     facebookRedirect()
     // }, [])
 
-   
     return (
-        <div>
+        <div className="authentication">
             <h2>Sign In</h2>
+             <div className = "authentication-container">
            <SignInForm />
-            
             {/* <button onClick={signInWithGoogleRedirect}>
                 Sign in with Googel-Redirect
             </button> */}
@@ -44,5 +44,7 @@ export const Authentication = () => {
             </button> */}
             <SignUpForm />
         </div>
+        </div>
+       
     )
 }
