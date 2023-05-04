@@ -5,7 +5,10 @@ import { getAuth,
   GoogleAuthProvider, 
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signOut
+  signOut,
+  onAuthStateChanged,
+  NextOrObserver,
+  User
   // FacebookAuthProvider 
 } 
   from "firebase/auth"
@@ -76,3 +79,5 @@ const firebaseConfig = {
   }
 
   export const signOutUser = async() => await signOut(auth)
+
+  export const onAuthStateChangedListener = (callback: any) => onAuthStateChanged(auth, callback)
