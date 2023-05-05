@@ -3,10 +3,14 @@ import { RxMoon } from "react-icons/rx"
 import "./navbar.routes.scss"
 import { Fragment, useContext } from "react"
 import { UserContext } from "../../context/user.context"
+import { CartContext } from "../../context/cart-context"
 import { signOutUser } from "../../utils/firebase/firebase.utils"
+import { CartIcon } from "../../component/cart-icon/cart-icon.component"
+import { CartDropdown } from "../../component/cart-dropdown/cart-dropdown.component"
 
 export const Navbar = () => {
     const {currentUser} = useContext(UserContext)
+    const {isCartOpen}: any = useContext(CartContext)
 
     const signOutHandler = async() => {
         await signOutUser()
@@ -19,6 +23,9 @@ export const Navbar = () => {
                 <RxMoon style={{fontSize:"50px"}}/>
                 </Link>
             <div className="nav-link-container">
+            <Link className="nav-blog" to="/shop">
+                    Shop
+                </Link>
                 <Link className="nav-blog" to ="/blog">
                     Blog
                 </Link>
@@ -28,11 +35,10 @@ export const Navbar = () => {
                 <Link className = "nav-signin" to = "/auth">
                     Sign In
                 </Link>
-                )
-
-                }
-               
+                )}
+                <CartIcon />
                 </div>
+                {isCartOpen && <CartDropdown />}
             </div>
             <Outlet />    
         </Fragment>
