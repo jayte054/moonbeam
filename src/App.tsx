@@ -3,7 +3,7 @@ import { Navbar } from "./Routes/Navbar/navbar.routes"
 import LandingPage from "./Routes/Homepage/homepage"
 import { Blog } from "./Routes/blog/blog.routes"
 import { Authentication } from "./Routes/authentication/authentication.route"
-import {Shop} from "./Routes/shop/shop.component"
+import Shop  from "./Routes/shop/shop.component"
 
 
 const App = () => {

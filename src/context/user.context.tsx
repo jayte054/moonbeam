@@ -24,7 +24,7 @@ export const UserProvider = ({children}: any) => {
         })
         return unsubscribe
     },[])
-    return <UserContext.Provider value ={value}>{children}</UserContext.Provider>
+    return <UserContext.Provider value={value}>{children}</UserContext.Provider>
 }
 
 // import { createContext, useState, ReactNode } from 'react';

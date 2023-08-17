@@ -10,7 +10,7 @@ import { CartDropdown } from "../../component/cart-dropdown/cart-dropdown.compon
 
 export const Navbar = () => {
     const {currentUser} = useContext(UserContext)
-    const {isCartOpen}: any = useContext(CartContext)
+    const {isCartOpen} = useContext<any>(CartContext)
 
     const signOutHandler = async() => {
         await signOutUser()

@@ -4,7 +4,8 @@ import { Studio } from "../../component/studio/studio.component"
 import { ProductContext } from "../../context/products.context"
 import "./shop.style.scss"
 
-export const Shop = () => {
+
+const Shop = () => {
     const {products}: any = useContext(ProductContext)
     return (
         <>
@@ -23,3 +24,6 @@ export const Shop = () => {
        
     )
 }
+
+
+export default Shop
