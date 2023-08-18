@@ -4,6 +4,7 @@ import LandingPage from "./Routes/Homepage/homepage"
 import { Blog } from "./Routes/blog/blog.routes"
 import { Authentication } from "./Routes/authentication/authentication.route"
 import Shop  from "./Routes/shop/shop.component"
+import { CheckoutPage } from "./Routes/chekoutpage/checkoutpage.component"
 
 
 const App = () => {
@@ -11,11 +12,12 @@ const App = () => {
     <>
     <Routes>
       <Route path="" element = {<Navbar />}>
-    <Route index  element ={<LandingPage />}/>
-    <Route path="/shop" element = {<Shop />}/>
-    <Route path="/blog" element = {<Blog />} />
-    <Route path="/auth" element = {<Authentication />} />
-    </Route>
+        <Route index  element ={<LandingPage />}/>
+        <Route path="/shop" element = {<Shop />}/>
+        <Route path="/blog" element = {<Blog />} />
+        <Route path="/auth" element = {<Authentication />} />
+        <Route path="/checkoutpage" element = {<CheckoutPage />} />
+      </Route>
     </Routes>
     </>
   )
