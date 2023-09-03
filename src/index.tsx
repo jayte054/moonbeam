@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import {Elements} from "@stripe/react-stripe-js"
 import './index.scss';
 import App from './App';
 import { UserProvider } from './context/user.context';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import { ProductProvider } from './context/products.context';
+import { CategoriesProvider } from './context/categories.context';
 import { CartContextProvider } from './context/cart-context';
+import {stripePromise} from "./utils/stripe/stripe"
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -15,11 +17,13 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
     <UserProvider>
-      <ProductProvider>
+      <CategoriesProvider>
         <CartContextProvider>
-        <App />
+          <Elements stripe={stripePromise}>
+          <App />
+          </Elements>
         </CartContextProvider>
-      </ProductProvider>
+      </CategoriesProvider>
     </UserProvider>
     </BrowserRouter>
   </React.StrictMode>

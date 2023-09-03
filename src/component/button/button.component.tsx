@@ -1,6 +1,6 @@
 import "./button.component.styles.scss"
 
-const BUTTON_TYPES_CLASS: any = {
+export const BUTTON_TYPES_CLASS: any = {
     google : "google-sign-in",
     inverted: "inverted"
 }

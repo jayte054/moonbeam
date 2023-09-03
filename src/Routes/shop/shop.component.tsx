@@ -1,27 +1,18 @@
-import { useContext } from "react"
-import { ProductCard } from "../../component/product-card/product-card.component"
-import { Studio } from "../../component/studio/studio.component"
-import { ProductContext } from "../../context/products.context"
+import { Fragment, useContext } from "react"
+import { Route, Routes } from "react-router-dom"
+import { CategoriesContext } from "../../context/categories.context"
+import CategoriesPreview from "../categoriesPreview/categories-preview.component"
+import  {Category}  from "../category/category.component"
 import "./shop.style.scss"
 
 
 const Shop = () => {
-    const {products}: any = useContext(ProductContext)
+    const {categoriesMap}: any = useContext(CategoriesContext)
     return (
-        <>
-         <header className="header-name">
-                Moonbeam Cakes.
-            </header>
-            <div style={{textAlign:"center"}}>
-            <Studio />
-            </div>
-        <div className="products-container">
-            {products.map((product: any) => {
-                return <ProductCard id={product.id} product={product}/>
-            })}
-        </div>
-        </>
-       
+       <Routes>
+        <Route index element={<CategoriesPreview />} />
+        <Route path=":category" element={<Category />} />
+       </Routes>
     )
 }
 

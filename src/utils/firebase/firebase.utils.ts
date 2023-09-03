@@ -12,7 +12,16 @@ import { getAuth,
   // FacebookAuthProvider 
 } 
   from "firebase/auth"
-import {getFirestore, doc, setDoc, getDoc} from "firebase/firestore"
+import {getFirestore, 
+        doc, 
+        setDoc, 
+        getDoc,
+        collection,
+        writeBatch,
+        query,
+        getDocs
+      } from "firebase/firestore"
+import { unstable_batchedUpdates } from "react-dom";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBjMZbzJ2n4r2FNwXrB4_ZaUjQO10ZSLX8",
@@ -40,6 +49,33 @@ const firebaseConfig = {
   // export const signInWithFacebookProvider = () => signInWithRedirect(auth, facebookProvider)
 
   export const db = getFirestore()
+
+  export const addCollectionAndDocuments = async (collectionKey: any, objectToAdd: any) => {
+      const collectionRef = collection(db, collectionKey)
+      const batch = writeBatch(db)
+
+      objectToAdd.forEach((object: any) => {
+        const docRef = doc(collectionRef, object.title.toLowerCase())
+        batch.set(docRef, object)
+      })
+
+      await batch.commit()
+      console.log("done")
+
+  }
+
+  export const getCategoriesAndDocuments = async () => {
+    const collectionRef = collection(db, "categories")
+    const q = query(collectionRef)
+
+    const querySnapShot = await getDocs(q)
+    const categoryMap = querySnapShot.docs.reduce((acc: any, docSnapShot: any) => {
+      const {title, items} = docSnapShot.data()
+      acc[title.toLowerCase()] = items
+      return acc
+    }, {})
+    return categoryMap
+  }
 
   export const createUserDocFromAuth = async(userAuth: any, additionalInformation: any = {}) => {
     if(!userAuth) return;
