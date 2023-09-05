@@ -7,12 +7,21 @@ const PaymentForm = () => {
     const stripe = useStripe()
     const elements = useElements()
 
-    const handleSubmit = (e:any) => {
+    const handlePayment = async(e:any) => {
+        console.log("here")
         e.preventDefault()
         if(!stripe || elements){
             return
         }
-        console.log("payment")
+        const response = await fetch("/.netlify/functions/create-payment-intent", {
+            method: "post",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({amount: 10111})
+        })
+
+        console.log(response)
     }
 
     return(
@@ -20,7 +29,7 @@ const PaymentForm = () => {
             <h2>Credit Card Payment</h2>
             <div className="form-container">
             <CardElement />
-            <Button buttonType={BUTTON_TYPES_CLASS.inverted} onClick={handleSubmit}>Pay Now</Button>
+            <Button type="button" buttonType={BUTTON_TYPES_CLASS.inverted} onClick={handlePayment}>Pay Now</Button>
             </div>  
         </div>
     )

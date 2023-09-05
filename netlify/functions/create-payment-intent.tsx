@@ -1,7 +1,7 @@
-import * as dotenv from "dotenv"
+require("dotenv").config();
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY)
 
-dotenv.config()
+// dotenv.config()
 
 exports.handler = async (e: any) => {
     try{
